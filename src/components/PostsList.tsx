@@ -34,19 +34,25 @@ const PostsList = () => {
 	}
 
 	return (
-		<div className="container mx-auto p-4">
-			<input type="text" placeholder="Search by title" className="mb-4 p-2 border border-gray-300" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
-			<ul>
+		<div className="container mx-auto p-4 mt-20">
+			<input
+				type="text"
+				placeholder="Search by title"
+				className="bg-[#242c38] mb-8 flex w-full max-w-lg mx-auto rounded-md border-slate-200 px-3  ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-5  dark:placeholder:text-slate-400 dark:focus-visible:ring-slate-300 base-regular h-fit border-0 bg-black-400 py-6 pl-20 pr-8 text-white-800 !ring-0 !ring-offset-0 placeholder:text-white-800"
+				value={searchTerm}
+				onChange={(e) => setSearchTerm(e.target.value)}
+			/>
+			<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{currentPosts.map((post) => (
-					<li key={post.id} className="mb-4 p-4 border rounded">
-						<h3 className="text-xl font-bold">{post.title}</h3>
-						<p>{post.body}</p>
+					<li key={post.id} className="shadow backdrop-blur-3xl transition-all hover:shadow-lg mb-4 p-6 rounded-md bg-opacity-50 bg-gradient-to-b from-[#161E2C] to-[#111721]">
+						<h3 className="text-xl font-bold text-white mb-2">{post.title}</h3>
+						<p className="text-zinc-400">{post.body}</p>
 					</li>
 				))}
 			</ul>
-			<div className="pagination">
+			<div className="mx-auto flex flex-wrap justify-center">
 				{[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map((_, i) => (
-					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? "bg-blue-500 text-white" : "bg-gray-200"}`}>
+					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? " bg-blue-500 rounded-full text-white" : "text-zinc-600"}`}>
 						{i + 1}
 					</button>
 				))}
