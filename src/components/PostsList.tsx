@@ -32,13 +32,12 @@ const PostsList = () => {
 			</div>
 		);
 	}
-
 	if (status === "failed") {
-		return <div>Error: {error}</div>;
+		return <div className="text-red-500 text-center text-xl mt-4">Error: {error}</div>;
 	}
 
 	return (
-		<div className="container mx-auto p-4 mt-20">
+		<div className="p-4 mt-20">
 			<input
 				type="text"
 				placeholder="Search by title"
@@ -56,7 +55,7 @@ const PostsList = () => {
 			</ul>
 			<div className="mx-auto flex flex-wrap justify-center">
 				{[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map((_, i) => (
-					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? " bg-gradient-to-r from-[#4c73ff] to-[#389bff]rounded-full text-white" : "text-zinc-600"}`}>
+					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? " bg-gradient-to-r from-[#4c73ff] to-[#389bff] rounded-full text-white" : "text-zinc-600"}`}>
 						{i + 1}
 					</button>
 				))}
