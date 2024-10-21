@@ -26,7 +26,11 @@ const PostsList = () => {
 	const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
 	if (status === "loading") {
-		return <div>Loading...</div>;
+		return (
+			<div className="flex justify-center items-center h-64">
+				<div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+			</div>
+		);
 	}
 
 	if (status === "failed") {
@@ -45,14 +49,14 @@ const PostsList = () => {
 			<ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{currentPosts.map((post) => (
 					<li key={post.id} className="shadow backdrop-blur-3xl transition-all hover:shadow-lg mb-4 p-6 rounded-md bg-opacity-50 bg-gradient-to-b from-[#161E2C] to-[#111721]">
-						<h3 className="text-xl font-bold text-white mb-2">{post.title}</h3>
-						<p className="text-zinc-400">{post.body}</p>
+						<h3 className="text-2xl font-bold text-white mb-2">{post.title}</h3>
+						<p className="text-[#a4b8d5]">{post.body}</p>
 					</li>
 				))}
 			</ul>
 			<div className="mx-auto flex flex-wrap justify-center">
 				{[...Array(Math.ceil(filteredPosts.length / postsPerPage))].map((_, i) => (
-					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? " bg-blue-500 rounded-full text-white" : "text-zinc-600"}`}>
+					<button key={i} onClick={() => paginate(i + 1)} className={`px-4 py-2 m-1 ${currentPage === i + 1 ? " bg-gradient-to-r from-[#4c73ff] to-[#389bff]rounded-full text-white" : "text-zinc-600"}`}>
 						{i + 1}
 					</button>
 				))}
